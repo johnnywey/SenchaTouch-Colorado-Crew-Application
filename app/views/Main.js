@@ -18,11 +18,6 @@ colocrew.views.Main = Ext.extend(Ext.Panel, {
             
             dockedItems: [
                 {
-                    dock : 'top',
-                    xtype: 'toolbar',
-                    title: 'Choose a Title'
-                },
-                {
                     dock : 'bottom',
                     xtype: 'toolbar',
                     title: 'Colorado Production Industry'

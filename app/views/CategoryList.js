@@ -6,35 +6,60 @@
  * part of this class is the XTemplate used to render each item - all other functionality is already provided
  * by Ext.List
  */
-colocrew.views.List = Ext.extend(Ext.List, {
-    emptyText   : 'No categories on file',
-    // ui: 'kiva',
+colocrew.views.List = Ext.extend(Ext.NestedList, {
+    emptyText : 'No categories on file',
+    title: 'Select a Category',
+    bodyPadding: 10,
     
-    /**
-     * Ext.List can take a tpl configuration, which allows us to customize the look and feel of our list. In this case
-     * we've set up a simple template and added a custom function (percentFunded), which allows us to do simple view logic
-     * inside the template. See the XTemplate docs for more (http://dev.sencha.com/deploy/touch/docs/?class=Ext.XTemplate)
-     */
-    itemTpl: new Ext.XTemplate('<div class="category">{name}</div>'),
+    getTitleTextTpl: function() {
+        return '{name}';
+    },
+    
+    getItemTextTpl: function() {
+        return '{name}';
+    },
     
     /**
      * initComponent is called whenever any class is instantiated. It is normal to add some logic here to set up
      * our component - in this case we're defining a Store and adding the filter toolbar at the top.
      */
     initComponent: function() {
+           var data = {
+                categories:[{
+                    id: 1,
+                    name: "Crew",
+                    categories: [{
+                        id:10,
+                        name: "Next one",
+                        leaf: true
+                    }]
+                },{
+                    id: 2,
+                    name: "Multimedia"
+                },{
+                    id: 3,
+                    name: "Post Production"
+                },{
+                    id: 4,
+                    name: "Production Companies"
+                }
+            ]};
         Ext.applyIf(this, {
-            store: new Ext.data.Store({
+            store: new Ext.data.TreeStore({
                 model: 'Category',
-                data : [
-                    {id: 1,name: "Crew"},
-                    {id: 2,name: "Multimedia"},
-                    {id: 3,name: "Post Production"},
-                    {id: 4,name: "Production Companies"}
-            ]
-          })  
+                root: data,
+                proxy: {
+                    type: 'ajax',
+                    reader: {
+                        type: 'tree',
+                        root: 'categories'
+                    }
+                }
+            })  
         });
             
         colocrew.views.List.superclass.initComponent.apply(this, arguments);
+        this.enableBubble('leafitemtap');
     }
 });
 

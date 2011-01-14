@@ -15,8 +15,13 @@ Ext.regController("category", {
         this.listView = this.render({
             xtype: 'colocrewMain',
             listeners: {
-                scope : this
+                scope: this,
+                leafitemtap: this.tap
             }
         }, Ext.getBody()).down('.categoriesList');
+    },
+    
+    tap: function(subList, subIdx, el, e, detailCard) {
+        console.log("Tapped");
     }
 });
