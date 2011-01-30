@@ -1,0 +1,4 @@
+- Goofy characters in the name field(s) cause the iOS searching mechanism to crash with a BAD_ACCESS.
+Look for "Alicia" and "CaÃ±on" for deletion
+
+- Remove LIGHTGROUP's last name field as it starts with "&"

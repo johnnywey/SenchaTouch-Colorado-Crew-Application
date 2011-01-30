@@ -17,9 +17,22 @@ Ext.regApplication({
      * is launch the application by calling the loans controller's 'list' action (see app/controllers/loans.js)
      */
     launch: function() {
-        Ext.dispatch({
-            controller: 'category',
-            action    : 'list'
+        // pre-register some models we'll be using a lot
+        var categories = new Ext.data.Store({
+              model: 'Category',
+              storeId: 'MainCategoriesStore' 
         });
+        var categoryStore = Ext.StoreMgr.lookup('Categories');
+        Ext.each(Ext.StoreMgr.lookup('People').collect('primaryCategoryId', false), function(id, index){
+            var category = categoryStore.find('id', id);
+            if(category >= 0) {
+                categories.insert(categories.getCount(), categoryStore.getAt(category));
+            }
+        });
+        // Ext.dispatch({
+        //     controller: 'category',
+        //     action    : 'listPrimary'
+        // });
+        this.views.viewport = new this.views.Viewport();
     }
 });

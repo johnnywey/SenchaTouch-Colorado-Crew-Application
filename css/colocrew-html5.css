@@ -1,0 +1,12 @@
+.roundList {
+    -webkit-border-radius:10px;
+    border-radius:10px;
+}
+
+.roundList .x-list-item:first-child {
+    border-top: 0;
+}
+
+.roundList .x-list-item:last-child {
+    border-bottom: 0;
+}

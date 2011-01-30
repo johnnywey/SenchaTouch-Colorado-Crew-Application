@@ -1,12 +1,9 @@
 /**
- * @class colocrew.views.CategoryList
+ * @class colocrew.views.GroupList
  * @extends Ext.List
  * 
- * This simple Ext.List subclass is used to display the Loans that are returned from Kiva's API. The largest
- * part of this class is the XTemplate used to render each item - all other functionality is already provided
- * by Ext.List
  */
-colocrew.views.CategoryList = Ext.extend(Ext.List, {
+colocrew.views.GroupList = Ext.extend(Ext.List, {
     cls: "roundList",
     emptyText : 'No categories on file',
     title: 'Select a Category',
@@ -19,11 +16,11 @@ colocrew.views.CategoryList = Ext.extend(Ext.List, {
      */
     initComponent: function() {
         Ext.applyIf(this, {
-            store: "MainCategoriesStore"
+            store: "Categories"
         });
-        colocrew.views.CategoryList.superclass.initComponent.apply(this, arguments);
+        colocrew.views.GroupList.superclass.initComponent.apply(this, arguments);
         this.enableBubble('itemtap');
     }
 });
 
-Ext.reg('categoryList', colocrew.views.CategoryList);
+Ext.reg('groupList', colocrew.views.GroupList);
