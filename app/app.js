@@ -29,10 +29,6 @@ Ext.regApplication({
                 categories.insert(categories.getCount(), categoryStore.getAt(category));
             }
         });
-        // Ext.dispatch({
-        //     controller: 'category',
-        //     action    : 'listPrimary'
-        // });
         this.views.viewport = new this.views.Viewport();
     }
 });

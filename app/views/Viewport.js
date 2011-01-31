@@ -5,15 +5,15 @@ colocrew.views.Viewport = Ext.extend(Ext.Panel, {
     initComponent: function() {
         //put instances of cards into app.views namespace
         Ext.apply(colocrew.views, {
-            categoryList: new colocrew.views.Main(),
-            groupList: new colocrew.views.Group()
+            categoryList: new colocrew.views.CategoryList(),
+            groupList: new colocrew.views.GroupList()
             //contactForm: new app.views.ContactForm()
         });
         //put instances of cards into viewport
         Ext.apply(this, {
             items: [
-                colocrew.views.Main,
-                colocrew.views.Group
+                colocrew.views.categoryList,
+                colocrew.views.groupList
                 //app.views.contactForm,
             ]
         });
