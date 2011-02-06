@@ -10,5 +10,3 @@ Ext.regModel("Category", {
         {name: "name",type: "string"}
     ]
 });
-
-// :TODO: Add offline storage for this

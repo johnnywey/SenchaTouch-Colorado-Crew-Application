@@ -23,8 +23,7 @@ colocrew.views.CategoryList = Ext.extend(Ext.Panel, {
             xtype: 'list',
             cls: "roundList",
             margin: 15,
-            // itemTpl: '<tpl if="id == 0"><strong>{name}</strong></tpl><tpl if="id &gt; 0">{name}</tpl>',
-            itemTpl: '{name}',
+            itemTpl: '<tpl if="id == 0"><strong>{name}</strong></tpl><tpl if="id &gt; 0">{name}</tpl>',
             store: "MainCategoriesStore",
             onItemDisclosure: function (record) {
                 Ext.dispatch({

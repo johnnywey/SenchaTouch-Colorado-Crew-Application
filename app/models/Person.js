@@ -12,11 +12,11 @@ Ext.regModel("Person", {
         {name: "lastName", type: "string"},
         {name: "companyName", type: "string"},
         {name: "emailAddress", type: "string"},
-        {name: "primaryPhoneNumber", type: "string"},
-        {name: "zipCodeId", type: "int"},
+        {name: "phoneNumber", type: "string"},
+        {name: "zipCode", type: "string"},
         {name: "primaryCategoryId", type: "int"},
         {name: "secondaryCategoryId", type: "int"},
-        {name: "cityId", type: "int"},
+        {name: "city", type: "string"},
         {name: "primaryName", type: "string"}
     ]
 });

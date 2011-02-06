@@ -1,6 +1,6 @@
 Ext.regStore("Categories", {
     model: "Category", 
-data: [{id:1,"name":"Crew"}
+    data: [{id:1,"name":"Crew"}
 ,{id:2,"name":"Art Directors-film, Video"}
 ,{id:3,"name":"Assistant Directors"}
 ,{id:4,"name":"Camera Operators"}

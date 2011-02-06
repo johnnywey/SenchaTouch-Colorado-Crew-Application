@@ -19,21 +19,20 @@ def cities = new CSVReader(new FileReader("PRODDATA.CSV"))
 def categories = new CSVReader(new FileReader("PRODDATA.CSV"))
 def zipCodes = new CSVReader(new FileReader("PRODDATA.CSV"))
 
-def insertStartCity = """Ext.regStore("Cities", {
-    model: "City", 
-    data: ["""
-    
 def insertStartCategory = """Ext.regStore("Categories", {
     model: "Category", 
-data: ["""    
-
-def insertStartZipCode = """Ext.regStore("ZipCodes", {
-    model: "ZipCode", 
-data: ["""  
+    data: ["""    
 
 def insertStartPerson = """Ext.regStore("People", {
     model: "Person", 
-data: ["""  
+    sorters: [{
+           property : 'city',
+           direction: 'ASC'
+       },{
+           property : 'primaryName',
+           direction: 'ASC'
+       }],
+    data: ["""  
 
 def finalOutput = """]
 });"""
@@ -45,24 +44,15 @@ def zipCodeMap = [:]
 def personCategoryMap = [:]
 
 // cities
-cityOutput << insertStartCity
-def id = 1
 while((nextLine = cities.readNext())) {    
     def cityName = MakeProperNoun.make((nextLine[cityIndex]).toLowerCase())
     if(!cityName)
         cityName = "None"
     if(!cityMap[cityName.toLowerCase()]) {
-        def city = new City(name:cityName,id:id)
-        cityMap.put(city.name.toLowerCase(),city.id)
-        if(id > 1) {
-            cityOutput << ","
-        }
-        cityOutput << city.toJson() + "\n"
-        id++
+        def city = new City(name:cityName,id:null)
+        cityMap.put(city.name.toLowerCase(),city)
     }
 }
-cityOutput << finalOutput
-
 // categories
 categoryOutput << insertStartCategory
 id = 1
@@ -89,23 +79,15 @@ while((nextLine = categories.readNext())) {
 categoryOutput << finalOutput
 
 // zip codes
-zipCodeOutput << insertStartZipCode
-id = 1
 while((nextLine = zipCodes.readNext())) {
     def splitCode = nextLine[zipCodeIndex].split("-")[0]
     if(!zipCodeMap[splitCode]) {
             if(splitCode!='') {
-                def zipCode = new ZipCode(code:splitCode,id:id)
-                zipCodeMap.put(zipCode.code,zipCode.id)
-                if(id > 1) {
-                    zipCodeOutput << ","
-                }
-                zipCodeOutput << zipCode.toJson() + "\n"
-                id++
+                def zipCode = new ZipCode(code:splitCode,id:null)
+                zipCodeMap.put(zipCode.code,zipCode)
         }
     }
 }
-zipCodeOutput << finalOutput
 
 // people
 personOutput << insertStartPerson

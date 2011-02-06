@@ -22,13 +22,28 @@ Ext.regApplication({
               model: 'Category',
               storeId: 'MainCategoriesStore' 
         });
-        var categoryStore = Ext.StoreMgr.lookup('Categories');
-        Ext.each(Ext.StoreMgr.lookup('People').collect('primaryCategoryId', false), function(id, index){
-            var category = categoryStore.find('id', id);
-            if(category >= 0) {
-                categories.insert(categories.getCount(), categoryStore.getAt(category));
-            }
+        var groups = new Ext.data.Store({
+           model: 'Category',
+           storeId: 'AllGroupsStore' 
         });
+        new Ext.data.Store({
+            model: 'Group',
+            storeId: 'MatchingGroupsStore'
+        });
+        new Ext.data.Store({
+            model: 'Person',
+            storeId: 'MatchingPeopleStore'
+        });
+        var categoryStore = Ext.StoreMgr.lookup('Categories');
+        
+        // Add all categories
+        Ext.each(Ext.StoreMgr.lookup('People').collect('primaryCategoryId', false), function(id, index){
+            categories.insert(categories.getCount(), categoryStore.getById(id));
+        });
+        categories.insert(0, Ext.ModelMgr.create({
+            id: 0,
+            name: 'All Categories'
+        }, 'Category'));
         this.views.viewport = new this.views.Viewport();
     }
 });

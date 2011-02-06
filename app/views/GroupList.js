@@ -1,6 +1,6 @@
 /**
  * @class colocrew.views.GroupList
- * @extends Ext.List
+ * @extends Ext.Panel
  * 
  */
 colocrew.views.GroupList = Ext.extend(Ext.Panel, {
@@ -9,7 +9,7 @@ colocrew.views.GroupList = Ext.extend(Ext.Panel, {
         xtype: 'toolbar',
         title: 'Select a Group',
         items: [{
-            text: 'Back',
+            text: 'Categories',
             ui: 'back',
             listeners: {
                 'tap': function () {
@@ -29,8 +29,15 @@ colocrew.views.GroupList = Ext.extend(Ext.Panel, {
         emptyText : 'No categories on file',
         title: 'Select a Group',
         margin: 15,
-        itemTpl: '{name}',
-        store: "Categories"
+        itemTpl: '<tpl if="secondaryCategoryId == 0"><strong>{secondaryCategoryName}</strong></tpl><tpl if="secondaryCategoryId &gt; 0">{secondaryCategoryName}</tpl>',
+        store: "MatchingGroupsStore",
+        onItemDisclosure: function (record) {
+            Ext.dispatch({
+                controller: colocrew.controllers.crew,
+                action: 'listPeople',
+                record: record
+            });
+        }
     }],
     
     scroll: 'vertical',

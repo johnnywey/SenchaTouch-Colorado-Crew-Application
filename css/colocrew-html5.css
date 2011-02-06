@@ -10,3 +10,7 @@
 .roundList .x-list-item:last-child {
     border-bottom: 0;
 }
+
+strong, b {
+    font-weight: bolder;
+}

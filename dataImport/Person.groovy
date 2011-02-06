@@ -1,9 +1,9 @@
 class Person {
 	String externalId
-	String zipCode
+	ZipCode zipCode
 	String primaryCategory
 	String secondaryCategory
-	String city
+	City city
 	String companyName
 	String emailAddress
 	String primaryName
@@ -18,9 +18,10 @@ class Person {
             description = description.replaceAll('"', "'")
             description = description.replaceAll("\n", "")
         }
-		return "{id: ${externalId},\"zipCodeId\": \"${zipCode}\",\"secondayCategoryId\": \"${secondaryCategory}\",\"city\":\"${city}\",\"primaryCategoryId\":\"${primaryCategory}\"," +
-		"\"phoneNumber\":\"${phoneNumber}\",\"companyName\":\"${companyName}\",\"emailAddress\":\"${emailAddress}\",\"primaryName\":\"${primaryName}\"," +
-		"\"lastName\":\"${lastName}\",\"description\":\"${description}\"}"
+		return "{id: ${externalId},\"zipCode\": ${(zipCode && zipCode.code && zipCode.code.size() > 4) ? "\"${zipCode.code}\"" : null}," + 
+		"\"secondaryCategoryId\": \"${secondaryCategory}\",\"city\":\"${city?.name}\",\"primaryCategoryId\":\"${primaryCategory}\"," +
+		"\"phoneNumber\":${phoneNumber ? "\"${phoneNumber}\"" : null},\"companyName\":${companyName ? "\"${companyName}\"" : null},\"emailAddress\":\"${emailAddress}\",\"primaryName\":\"${primaryName}\"," +
+		"\"lastName\":\"${lastName}\",\"description\":${description ? "\"${description}\"" : null}}"
 	}
 	
 }
