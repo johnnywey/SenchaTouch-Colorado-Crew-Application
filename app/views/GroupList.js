@@ -6,8 +6,15 @@
 colocrew.views.GroupList = Ext.extend(Ext.Panel, {
     layout: 'fit',
     dockedItems: [{
+        dock: 'top',
         xtype: 'toolbar',
-        title: 'Select a Group',
+        title: 'Crew',
+        ui: 'dark'
+    },{
+        dock: 'top',
+        xtype: 'toolbar',
+        ui: 'light',
+        title: 'Chose a Group',
         items: [{
             text: 'Categories',
             ui: 'back',

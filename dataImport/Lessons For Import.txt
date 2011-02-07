@@ -2,3 +2,4 @@
 Look for "Alicia" and "CaÃ±on" for deletion
 
 - Remove LIGHTGROUP's last name field as it starts with "&"
+- Change "Wseminster" to "Westminster"

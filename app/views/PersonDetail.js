@@ -44,12 +44,7 @@ colocrew.views.PersonDetail = Ext.extend(Ext.Panel, {
     updateWithRecord: function(person) {
         var categoryStore = Ext.StoreMgr.lookup('Categories');
         Ext.each(this.items.items, function(item) {
-            person.data.primaryCategoryName = categoryStore.getById(person.data.primaryCategoryId).data.name;
-            person.data.secondaryCategoryName = categoryStore.getById(person.data.secondaryCategoryId).data.name;
             item.update(person.data);
         });
-        // var toolbar = this.getDockedItems()[0];
-        // toolbar.setTitle(record.get('givenName') + ' ' + record.get('familyName'));
-        // toolbar.getComponent('edit').record = record;
     }
 });

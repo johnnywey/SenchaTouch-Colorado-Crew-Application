@@ -25,13 +25,6 @@ def insertStartCategory = """Ext.regStore("Categories", {
 
 def insertStartPerson = """Ext.regStore("People", {
     model: "Person", 
-    sorters: [{
-           property : 'city',
-           direction: 'ASC'
-       },{
-           property : 'primaryName',
-           direction: 'ASC'
-       }],
     data: ["""  
 
 def finalOutput = """]
@@ -59,7 +52,7 @@ id = 1
 while((nextLine = categories.readNext())) {
     if(!categoryMap[MakeProperNoun.make(nextLine[categoryIndex]).toLowerCase()]) {
         def category = new CrewCategory(name:MakeProperNoun.make(nextLine[categoryIndex]),id:id)
-        categoryMap.put(category.name.toLowerCase(),category.id)
+        categoryMap.put(category.name.toLowerCase(),category)
         if(id > 1) {
             categoryOutput << ","
         }
@@ -68,7 +61,7 @@ while((nextLine = categories.readNext())) {
     }
     if(!categoryMap[MakeProperNoun.make(nextLine[subcategoryIndex]).toLowerCase()]) {
         def category = new CrewCategory(name:MakeProperNoun.make(nextLine[subcategoryIndex]),id:id)
-        categoryMap.put(category.name.toLowerCase(),category.id)
+        categoryMap.put(category.name.toLowerCase(),category)
         if(id > 1) {
             categoryOutput << ","
         }        

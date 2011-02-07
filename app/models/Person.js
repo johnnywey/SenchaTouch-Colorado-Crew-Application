@@ -15,7 +15,9 @@ Ext.regModel("Person", {
         {name: "phoneNumber", type: "string"},
         {name: "zipCode", type: "string"},
         {name: "primaryCategoryId", type: "int"},
+        {name: "primaryCategoryName", type: "string"},
         {name: "secondaryCategoryId", type: "int"},
+        {name: "secondaryCategoryName", type: "string"},
         {name: "city", type: "string"},
         {name: "primaryName", type: "string"}
     ]

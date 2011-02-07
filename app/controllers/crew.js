@@ -7,9 +7,6 @@ colocrew.controllers.crew = new Ext.Controller({
     listGroup: function(options) {
         if(options.id==0 || options.id) {
             var categoryId = parseInt(options.id);
-            var groupsStore = Ext.StoreMgr.lookup('MatchingGroupsStore');
-            groupsStore.removeAll();
-            groupsStore.removed = [];
             var categoryStore = Ext.StoreMgr.lookup('Categories');
             var groupsStore = Ext.StoreMgr.lookup('MatchingGroupsStore');
             groupsStore.removeAll();
@@ -36,11 +33,15 @@ colocrew.controllers.crew = new Ext.Controller({
             });
             var allGroupsItem = Ext.ModelMgr.create({
                 primaryCategoryId: categoryId,
-                primaryCategoryName: null,
+                primaryCategoryName: Ext.StoreMgr.lookup('MainCategoriesStore').getById(categoryId).data.name,
                 secondaryCategoryId: 0,
                 secondaryCategoryName: "All Groups"
             }, 'Group');
             groupsStore.insert(0, allGroupsItem);
+            colocrew.views.groupList.getDockedItems()[0].setTitle(Ext.StoreMgr.lookup('MainCategoriesStore').getById(categoryId).data.name);
+            if(colocrew.views.groupList.items.items[0].scroller) {
+               colocrew.views.groupList.items.items[0].scroller.scrollTo({x:0, y:0}); 
+            }
         }
         colocrew.views.viewport.setActiveItem(colocrew.views.groupList, options.animation);
     },
@@ -51,8 +52,7 @@ colocrew.controllers.crew = new Ext.Controller({
             var peopleStore = Ext.StoreMgr.lookup('MatchingPeopleStore');
             peopleStore.removeAll();
             peopleStore.removed = [];
-            var matchingPeople = null;
-            var matchingPeople = Ext.StoreMgr.lookup('People').queryBy(function(rec) {
+            peopleStore.insert(0, Ext.StoreMgr.lookup('People').queryBy(function(rec) {
                 var resultPrimary = resultSecondary = false;
                 if(record.primaryCategoryId==0) {
                     resultPrimary = true;
@@ -65,15 +65,16 @@ colocrew.controllers.crew = new Ext.Controller({
                     resultSecondary = rec.data.secondaryCategoryId == record.secondaryCategoryId;
                 }
                 return resultPrimary && resultSecondary;
-            });
+            }).items);
             var categoryStore = Ext.StoreMgr.lookup('Categories');
-            matchingPeople.each(function(item, index, length) {
-                item.data.primaryCategoryName = categoryStore.getById(item.data.primaryCategoryId).data.name;
-                item.data.secondaryCategoryName = categoryStore.getById(item.data.secondaryCategoryId).data.name;
-                peopleStore.insert(peopleStore.getCount(), item);
-            });
+            var titleText = record.primaryCategoryName + ": " + record.secondaryCategoryName;
+            colocrew.views.personList.getDockedItems()[0].setTitle(titleText);
+            // scroll back to top of the list in the event of a data change
+            if(colocrew.views.personList.items.items[0].scroller) {
+                colocrew.views.personList.items.items[0].scroller.scrollTo({x:0, y:0});    
+            }
+            this.changePersonSort();
         }
-        this.changePersonSort();
         colocrew.views.viewport.setActiveItem(colocrew.views.personList, options.animation);
     },
     
@@ -81,9 +82,9 @@ colocrew.controllers.crew = new Ext.Controller({
         var peopleStore = Ext.StoreMgr.lookup('MatchingPeopleStore');
         if(options && options.sort=="name") {
             peopleStore.getGroupString = function(record) {
-                return record.get('primaryName')[0];
+                return record.get('lastName')[0];
             }
-            peopleStore.sort('primaryName', 'ASC');
+            peopleStore.sort('lastName', 'ASC');
         } else {
             peopleStore.getGroupString = function(record) {
                 return record.get('city');
@@ -99,4 +100,8 @@ colocrew.controllers.crew = new Ext.Controller({
             colocrew.views.viewport.setActiveItem(colocrew.views.personDetail, options.animation);
         }
     },
+    
+    search: function(options) {
+        colocrew.views.viewport.setActiveItem(colocrew.views.searchField, options.animation);
+    }
  });

@@ -6,8 +6,14 @@
 colocrew.views.PersonList = Ext.extend(Ext.Panel, {
     layout: 'fit',
     dockedItems: [{
+        dock: 'top',
         xtype: 'toolbar',
         title: 'Select a Person',
+        ui: 'dark'
+    },{
+        dock: 'top',
+        ui: 'light',
+        xtype: 'toolbar',
         items: [{
             text: 'Groups',
             ui: 'back',
