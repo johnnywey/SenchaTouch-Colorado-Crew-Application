@@ -31,13 +31,6 @@ colocrew.controllers.crew = new Ext.Controller({
                     groupsStore.insert(groupsStore.getCount(), newGroupItem);
                 }
             });
-            var allGroupsItem = Ext.ModelMgr.create({
-                primaryCategoryId: categoryId,
-                primaryCategoryName: Ext.StoreMgr.lookup('MainCategoriesStore').getById(categoryId).data.name,
-                secondaryCategoryId: 0,
-                secondaryCategoryName: "All Groups"
-            }, 'Group');
-            groupsStore.insert(0, allGroupsItem);
             colocrew.views.groupList.getDockedItems()[0].setTitle(Ext.StoreMgr.lookup('MainCategoriesStore').getById(categoryId).data.name);
             if(colocrew.views.groupList.items.items[0].scroller) {
                colocrew.views.groupList.items.items[0].scroller.scrollTo({x:0, y:0}); 

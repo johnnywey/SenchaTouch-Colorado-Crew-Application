@@ -40,10 +40,6 @@ Ext.regApplication({
         Ext.each(Ext.StoreMgr.lookup('People').collect('primaryCategoryId', false), function(id, index){
             categories.insert(categories.getCount(), categoryStore.getById(id));
         });
-        categories.insert(0, Ext.ModelMgr.create({
-            id: 0,
-            name: 'All Categories'
-        }, 'Category'));
         this.views.viewport = new this.views.Viewport();
     }
 });
