@@ -21,7 +21,7 @@ colocrew.views.GroupList = Ext.extend(Ext.Panel, {
             title: 'Chose a Group',
             items: [
                 {
-                    text: 'Categories',
+                    text: 'Back',
                     ui: 'back',
                     listeners: {
                         'tap': function () {
