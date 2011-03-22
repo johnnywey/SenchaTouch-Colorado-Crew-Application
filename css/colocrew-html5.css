@@ -14,3 +14,7 @@
 strong, b {
     font-weight: bolder;
 }
+
+.x-toolbar-title {
+    font-size: 1em;
+}
