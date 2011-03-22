@@ -16,6 +16,10 @@ strong, b {
     font-weight: bolder;
 }
 
+.contact-info {
+    margin-bottom: 0.25em;
+}
+
 .top-bar {
     font-size: 0.8em;
 }
