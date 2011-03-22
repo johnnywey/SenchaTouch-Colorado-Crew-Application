@@ -9,7 +9,8 @@ colocrew.views.PersonList = Ext.extend(Ext.Panel, {
         dock: 'top',
         xtype: 'toolbar',
         title: 'Select a Person',
-        ui: 'dark'
+        ui: 'dark',
+        cls: 'top-bar'
     },{
         dock: 'top',
         ui: 'light',
@@ -17,6 +18,7 @@ colocrew.views.PersonList = Ext.extend(Ext.Panel, {
         items: [{
             text: 'Groups',
             ui: 'back',
+            cls: 'top-bar',
             listeners: {
                 'tap': function () {
                     Ext.dispatch({
@@ -32,6 +34,7 @@ colocrew.views.PersonList = Ext.extend(Ext.Panel, {
                 id: 'byCity',
                 text: 'By City',
                 ui: 'action',
+                cls: 'top-bar',
                 listeners: {
                     'tap': function () {
                         Ext.dispatch({
@@ -46,6 +49,7 @@ colocrew.views.PersonList = Ext.extend(Ext.Panel, {
                 id: 'byName',
                 text: 'By Name',
                 ui: 'action',
+                cls: 'top-bar',
                 listeners: {
                     'tap': function () {
                         Ext.dispatch({

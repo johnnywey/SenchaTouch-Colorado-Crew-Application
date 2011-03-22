@@ -10,6 +10,7 @@ colocrew.views.PersonDetail = Ext.extend(Ext.Panel, {
         items: [
             {
                 text: 'Back',
+                cls: 'top-bar',
                 ui: 'back',
                 listeners: {
                     'tap': function () {
