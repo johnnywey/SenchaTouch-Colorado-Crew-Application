@@ -10,6 +10,7 @@ colocrew.views.CategoryList = Ext.extend(Ext.Panel, {
         xtype: 'toolbar',
         title: 'Choose a Category',
         ui: 'dark',
+        style: 'font-size:0.9em;height:2.3em',
         items:[
             {xtype:'spacer'},
             {
