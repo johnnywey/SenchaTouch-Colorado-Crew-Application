@@ -1,6 +1,6 @@
 .roundList {
-    -webkit-border-radius:10px;
-    border-radius:10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
 }
 
 .roundList .x-list-item:first-child {
@@ -13,4 +13,9 @@
 
 strong, b {
     font-weight: bolder;
+}
+
+.top-bar {
+    font-size: 0.9em;
+    /*height: 2.3em*/
 }
