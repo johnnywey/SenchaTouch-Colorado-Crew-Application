@@ -6,7 +6,7 @@ It is meant to copy the basic functionality of another version of the applicatio
 
 I figured it is a good example of a simple application that actually has some business value. This is to help augment a talk I'm working on demonstrating how to write applications for the framework and even turn them into "native" platform applications using [PhoneGap](http://www.phonegap.com/).
 
-I don't technically own the data, so I might have to take that down at some point. For now, however, it serves as a good example of a nice and diverse dataset. The dataImport directory is a group of Groovy scripts that simply grabs data from a CSV and exports to JSON. It probably makes a lot more sense to use local storage and that is an upgrade I'd like to add soon.
+I don't techincally own the data initially used for the app, so I've created stub data instead. It probably makes a lot more sense to use local storage and that is an upgrade I'd like to add soon.
 
 This application was built with version **1.0.1a** of Sencha Touch.
 
