@@ -8,7 +8,7 @@ I figured it is a good example of a simple application that actually has some bu
 
 I don't techincally own the data initially used for the app, so I've created stub data instead. It probably makes a lot more sense to use local storage and that is an upgrade I'd like to add soon.
 
-This application was built with version **1.0.1a** of Sencha Touch.
+This application was initially built with version 1.0.1a of Sencha Touch, but is now using version **1.1.1**.
 
 ### Some Interesting Features of the Application
 Finding a nice example of Sencha Touch MVC was difficult. So, my hope is that this can serve as an example of how to perform decent separation of concerns using the framework.
