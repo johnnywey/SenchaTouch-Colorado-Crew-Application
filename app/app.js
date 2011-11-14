@@ -7,14 +7,13 @@
  */ 
 Ext.regApplication({
     name: "colocrew",
-    
     icon: 'resources/images/colocrew.png',
     glossOnIcon: false,
     tabletStartupScreen: 'resources/images/tablet_startup.png',
     
     /**
-     * This function is automatically called when the document has finished loading. All we do here
-     * is launch the application by calling the loans controller's 'list' action (see app/controllers/loans.js)
+     * This function is automatically called when the document has finished loading. After setting up the store data,
+		 * we then call the Viewport to init the view.
      */
     launch: function() {
         // pre-register some models we'll be using a lot
